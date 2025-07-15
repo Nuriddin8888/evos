@@ -1,0 +1,751 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+/* Header Styles */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #077855;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.order-btn {
+    background-color: #077855;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+
+.fa-basket-shopping{
+    margin-right: 10px;
+}
+
+
+.fa-user{
+    font-size: 28px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.fa-user:hover{
+    color: #077855;
+}
+
+.order-btn:hover {
+    background-color: #024c35;
+}
+
+.lang-switcher span {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.lang-switcher span:first-child {
+    font-weight: bold;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(110.74deg, #32724e, 23.42%, #289357 80.22%);
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    /* margin-top: 70px; */
+}
+
+
+.header-bg{
+    background-image: url("https://evos.uz/_next/static/media/banner_texture.ac80bda4.png");
+    background-size: cover;
+    background-position: center;
+    height: 30px;   
+}
+
+
+.hero .container {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background-color: #024c35;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #077855;
+}
+
+/* Menu Section */
+.menu-section {
+    padding: 80px 0;
+}
+
+.menu-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+}
+
+.menu-categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 10px 20px;
+    background-color: #f1faee;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.category-btn:hover,
+.category-btn.active {
+    background-color: #077855;
+    color: white;
+}
+
+.menu-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    width: 350px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.menu-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item-img {
+    width: 70%;
+    overflow: hidden;
+}
+
+.menu-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.menu-item h3 {
+    padding-bottom: 10px;
+    font-size: 30px;
+}
+
+.menu-item p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 20px;
+    width: 280px;
+}
+
+.menu-item strong {
+    font-weight: 700;
+    color: #077855;
+    font-size: 20px;
+}
+
+
+.menu-btn {
+    width: 294.6px;
+    height: 57.6px;
+    border-radius: 4px;
+    background-color: #F6F8F9;
+    border: none;
+    font-size: 20px;
+    font-size: 700;
+    line-height: 26.4px;
+    letter-spacing: 0.49px;
+    color: black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 27px 0 19px 0;
+}
+
+
+.menu-btn:hover {
+    background-color: rgb(255, 255, 0);
+}
+
+
+
+/* Modalning asosiy stili */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px); /* Yengil blur efekti */
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.modal.show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Modal kontenti animatsiyasi */
+.modal-content {
+  background: white;
+  margin: 150px auto;
+  padding: 20px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  transform: translateY(-50px) scale(0.8);
+  opacity: 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); /* Sof shadow */
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modal.show .modal-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Yopish tugmasi */
+.close-modal {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+  color: #333;
+}
+
+.category-btn.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.address-input{
+    width: 100%;
+    height: 45px;
+    background-color: #f6f8f9;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    border-radius: 4px;
+    padding-left: 20px;
+}
+
+
+
+/* Branches Section */
+.branches-section {
+    padding: 80px 0;
+    background-color: #f1faee;
+}
+
+.branches-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+}
+
+.branches-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+#map {
+    height: 500px;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.branches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    max-height: 500px;
+    padding-right: 10px;
+}
+
+.branch-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.branch-name {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #077855;
+}
+
+.branch-address,
+.branch-phone {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(110.74deg, #32724e, 23.42%, #289357 80.22%);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-logo img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.footer-links h3,
+.footer-contact h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a:hover {
+    color: #024c35;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #024c35;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    nav ul {
+        gap: 15px;
+    }
+
+    .branches-map {
+        grid-template-columns: 1fr;
+    }
+
+    #map {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .header-actions {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 60vh;
+        margin-top: 60px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .cta-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .menu-categories {
+        gap: 10px;
+    }
+
+    .category-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.auth-buttons button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+#login-btn {
+    background-color: transparent;
+    border: 1px solid #024c35;
+    color: #024c35;
+}
+
+#login-btn:hover {
+    background-color: #024c35;
+    color: white;
+}
+
+#register-btn {
+    background-color: #024c35;
+    color: white;
+    border: 1px solid #024c35;
+}
+
+#register-btn:hover {
+    background-color: #024c35;
+    border-color: #024c35;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalopen 0.3s;
+}
+
+@keyframes modalopen {
+    from {opacity: 0; transform: translateY(-50px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #024c35;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #024c35;
+    outline: none;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.checkbox-group a {
+    color: #024c35;
+    text-decoration: underline;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #024c35;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.auth-submit-btn:hover {
+    background-color: #024c35;
+}
+
+.auth-links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.auth-links a {
+    color: #024c35;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
+    }
+    
+    .auth-buttons {
+        display: none;
+    }
+}
+
+
+.cart-modal {
+  display: none; /* Bosilgunga qadar ko‘rinmaydi */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.cart-modal-content {
+  background-color: #fff;
+  margin: 30px auto;
+  padding: 20px;
+  width: 90%;
+  height: 90vh;
+  border-radius: 10px;
+  overflow: auto;
+}
+.cart-count {
+    font-weight: bold;
+    margin-left: 5px;
+    color: #ff6600;
+}
+.cart-close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}

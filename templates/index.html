@@ -1,0 +1,168 @@
+{% load static %}
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVOS - Sevimli Fastfood</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="website icon" type="svg" href="{% static 'img/logos.svg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'img/logo.svg' %}" alt="EVOS Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menyu</a></li>
+                    <li><a href="#branches">Filiallar</a></li>
+                    <li><a href="#about">Biz haqimizda</a></li>
+                    <li><a href="#news">Yangiliklar</a></li>
+                    <li><a href="#contact">Aloqa</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="order-btn" class="order-btn">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    Savat</button>
+
+                <div class="lang-switcher">
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'users:profile' %}"><i class="fa-solid fa-user"></i></a>
+                    {% else %}
+                    <a href="{% url 'users:register' %}">Ro'yxatdan o'tish</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content" id="cart-modal-content">
+            {% include 'cart.html' %}
+        </div>
+    </div>
+
+
+    <div class="header-bg">
+
+    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>EVOS - Sevimli Ta'mlar</h1>
+            <p>Har bir tamga ishonch va sifat</p>
+            <button class="cta-btn">Menyuni ko'rish</button>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2>Menyu</h2>
+            <div class="menu-categories">
+                {% for category in categories %}
+                <button class="category-btn" data-category="{{ category.name|lower }}">{{ category.name }}</button>
+                {% endfor %}
+            </div>
+
+            <div class="menu-items">
+                {% for product in all_products %}
+                <div class="menu-item" data-category="{{ product.category_name.name|lower }}">
+                    <img class="menu-item-img" src="{{ product.image.url }}" alt="{{ product.title }}">
+                    <div class="menu-info">
+                        <h3>{{ product.title }}</h3>
+                        <p>{{ product.description|slice:":60" }}</p>
+                        <strong>{{ product.price }} so'm</strong>
+                    </div>
+
+                    {% if request.user.is_authenticated %}
+                    {% with product_quantities|get_item:product.id as count %}
+                    {% if count %}
+                    <button class="menu-btn add-to-cart-btn" data-id="{{ product.id }}">
+                        Savatga qo‘shish ({{ count }})
+                    </button>
+                    {% else %}
+                    <button class="menu-btn add-to-cart-btn" data-id="{{ product.id }}">
+                        Savatga qo‘shish
+                    </button>
+                    {% endif %}
+                    {% endwith %}
+                    {% else %}
+                    <a href="{% url 'users:register' %}">
+                        <button class="menu-btn">Savatga qo‘shish</button>
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- Branches Section -->
+    <section id="branches" class="branches-section">
+        <div class="container">
+            <h2>Filiallarimiz</h2>
+            <div class="branches-map">
+                <div id="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21687.08048452194!2d69.1704384743164!3d41.33875609999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b6ac6b04113%3A0x1ad729a16e3bcb30!2sEVOS!5e1!3m2!1suz!2s!4v1752560212339!5m2!1suz!2s"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="branches-list">
+                    <h1>Evos Beruniy Filiallar</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo-white.png" alt="EVOS Logo">
+                    <p>© 2023 EVOS. Barcha huquqlar himoyalangan.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Havolalar</h3>
+                    <ul>
+                        <li><a href="#">Menyu</a></li>
+                        <li><a href="#">Filiallar</a></li>
+                        <li><a href="#">Biz haqimizda</a></li>
+                        <li><a href="#">Yangiliklar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Aloqa</h3>
+                    <p>+998 71 123 45 67</p>
+                    <p>info@evos.uz</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

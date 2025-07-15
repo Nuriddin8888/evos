@@ -1,0 +1,56 @@
+{% load humanize %}
+<div class="cart-items">
+    <h2 class="section-title">
+        Savat
+        <span>{{ cart.total_items }} ta mahsulot</span>
+    </h2>
+
+    {% if cart and cart.items.all %}
+        {% for item in cart.items.all %}
+        <div class="cart-item" data-id="{{ item.id }}">
+            <div class="item-image">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">{{ item.product.title }}</h3>
+                <p class="item-desc">{{ item.product.description }}</p>
+                <p class="item-price">{{ item.product.price|intcomma }} so'm</p>
+            </div>
+            <div class="item-actions">
+                <button class="remove-btn" data-action="delete">
+                    <i class="fas fa-trash"></i> O'chirish
+                </button>
+                <div class="quantity-control">
+                    <button class="quantity-btn minus" data-action="minus">-</button>
+                    <span class="quantity">{{ item.quantity }}</span>
+                    <button class="quantity-btn plus" data-action="plus">+</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="cart-summary">
+            <h3 class="summary-title">Buyurtma xulosasi</h3>
+            <div class="summary-row">
+                <span>Mahsulotlar ({{ cart.total_items }} ta)</span>
+                <span>{{ cart.total_price|intcomma }} so'm</span>
+            </div>
+            <div class="summary-row">
+                <span>Yetkazib berish</span>
+                <span>10 000 so'm</span>
+            </div>
+            <div class="summary-row summary-total">
+                <span>Jami</span>
+                <span>{{ cart.total_price|add:"10000"|intcomma }} so'm</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn">Buyurtma berish</button>
+        </div>
+    {% else %}
+        <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Savat bo'sh</h3>
+            <p>Siz hali hech narsa buyurtma qilmadingiz</p>
+            <a href="{% url 'products:home' %}" class="back-to-menu">Menyuga qaytish</a>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,171 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVOS - Mening Profilim</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="website icon" type="svg" href="{% static 'img/logos.svg' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="{% url 'products:home' %}">
+                        <img src="{% static 'img/logo.svg' %}" alt="EVOS Logo">
+                    </a>
+                </div>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        {% if request.user.avatar %}
+                        <img src="{{ request.user.avatar.url }}" alt="User">
+                        {% else %}
+                        <img src="{% static 'img/users.png' %}" alt="Profile Picture">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="profile-container">
+                <aside class="profile-sidebar">
+                    <div class="profile-info">
+                        <div class="profile-pic">
+                            {% if request.user.avatar %}
+                            <img src="{{ request.user.avatar.url }}" alt="Profile Picture">
+                            {% else %}
+                            <img src="{% static 'img/users.png' %}" alt="Profile Picture">
+                            {% endif %}
+                            <div class="edit-pic">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <h3 class="profile-name">{{ request.user.username }}</h3>
+                        <p class="profile-phone">{{ request.user.email }}</p>
+                    </div>
+
+                    <ul class="profile-menu">
+                        <li><a href="#" class="active"><i class="fas fa-user"></i> Shaxsiy ma'lumotlar</a></li>
+                        <li><a href="#"><i class="fas fa-history"></i> Buyurtmalar tarixi</a></li>
+                        <li><a href="#"><i class="fas fa-heart"></i> Sevimlilar</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Manzillar</a></li>
+                        <li><a href="#"><i class="fas fa-lock"></i> Parolni o'zgartirish</a></li>
+                        <li><a href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i> Chiqish</a></li>
+                    </ul>
+                </aside>
+
+                <div class="profile-content">
+                    <div class="personal-info-section">
+                        <h2 class="section-title">
+                            Shaxsiy ma'lumotlar
+                            <button class="btn btn-outline" id="btn-outline">Tahrirlash</button>
+                        </h2>
+
+                        <div class="personal-info">
+                            <div class="info-group">
+                                <p class="info-label">Ism Familiya</p>
+                                <p class="info-value">{{ request.user.first_name }}</p>
+                            </div>
+                            <div class="info-group">
+                                <p class="info-label">Telefon raqam</p>
+                                <p class="info-value">{{ request.user.phone_number }}</p>
+                            </div>
+                            <div class="info-group">
+                                <p class="info-label">Elektron pochta</p>
+                                <p class="info-value">{{ request.user.email }}</p>
+                            </div>
+                            <div class="info-group">
+                                <p class="info-label">Tug'ilgan sana</p>
+                                <p class="info-value">{{ request.user.date_of_birth|date:"d.m.Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-history">
+                        <h2 class="section-title">So'nggi buyurtmalar</h2>
+
+                        <div class="table-responsive">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Sana</th>
+                                        <th>Mahsulotlar</th>
+                                        <th>Jami</th>
+                                        <th>Holat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if orders %}
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>#-{{ order.id }}</td>
+                                        <td>{{ order.created_at|date:"d.m.Y" }}</td>
+                                        <td>{{ order.product_list }}</td>
+                                        <td>{{ order.total_price|intcomma }} so'm</td>
+                                        <td>
+                                            {% if order.is_ordered %}
+                                            <span class="order-status status-completed">
+                                                Yakunlangan
+                                            </span>
+                                            {% else %}
+                                            <span class="order-status status-cancelled">
+                                                Jarayonda
+                                            </span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">Hali buyurtma qilmagansiz</td>
+                                    </tr>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Ma'lumotlarni o'zgartirish</h3>
+            <form id="editForm" enctype="multipart/form-data">
+                <label>Ismingiz:</label>
+                <input type="text" name="first_name" id="first_name_input">
+
+                <label>Telefon:</label>
+                <input type="text" name="phone" id="phone_input">
+
+                <label>Tug'ilgan sana:</label>
+                <input type="date" name="date_of_birth" id="dob_input">
+
+                <label>Avatar:</label>
+                <input type="file" name="avatar" id="avatar_input">
+
+                <button type="submit">Saqlash</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="{% static 'js/profile.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account | Secure Access</title>
+    <link rel="stylesheet" href="{% static 'css/verify.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="card">
+        <h1>Verify Your Account</h1>
+        <p class="subtitle">We've sent a verification code to your email</p>
+
+        {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="code">Verification Code</label>
+                <input type="text" id="code" name="code" placeholder="Enter 4-digit code" required autocomplete="off"
+                    autofocus>
+            </div>
+
+            <button type="submit" class="btn">Verify & Continue</button>
+
+            <div class="resend">
+                Didn't receive a code? <a href="#">Resend Code</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
